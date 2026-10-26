@@ -44,4 +44,6 @@ My route into this field has been interdisciplinary. I hold a Master of Internat
 - Structure-based design of small molecules, peptides, and antibodies
 - Large-scale analysis of chemical and biological data
 
+**Keywords:** cheminformatics · QSAR · ADMET prediction · molecular property prediction · AutoML · federated learning · molecular docking · molecular dynamics · free-energy calculations · structure-based drug design · antibody and peptide design
+
 I am currently preparing to pursue doctoral research in AI for drug discovery, and I welcome conversations about collaboration.
