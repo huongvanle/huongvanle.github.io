@@ -9,9 +9,9 @@ categories: research
 
 Hepatitis E virus (HEV) is a leading cause of acute viral hepatitis worldwide, and it hits pregnant women hardest, especially in the third trimester. Why pregnancy makes the infection so much worse has never been fully explained.
 
-Our [PNAS study](https://doi.org/10.1073/pnas.2614150123) (2026), led by the Meng laboratory at Virginia Tech and the Kenney laboratory at Ohio State, looks at this through host lipids. Pregnancy raises circulating free fatty acids, and the paper traces a hormone–lipid–HEV axis: placental lactogen pushes up fatty acid levels in liver and placental cells, oleic acid enhances HEV replication, and blocking phosphatidylethanolamine synthesis reduces it.
+Our [PNAS study](https://doi.org/10.1073/pnas.2614150123) (2026) looks at this through host lipids. It came out of a collaboration between my team at Calici and Professor Scott Kenney's group at The Ohio State University, together with the Meng laboratory at Virginia Tech. Pregnancy raises circulating free fatty acids, and the paper traces a hormone–lipid–HEV axis: placental lactogen pushes up fatty acid levels in liver and placental cells, oleic acid enhances HEV replication, and blocking phosphatidylethanolamine synthesis reduces it.
 
-My part of the work, with colleagues at Calici, was the structural modelling: could a fatty acid actually bind the viral protein where the biology suggested it should?
+Our contribution was the structural modelling: could a fatty acid actually bind the viral protein where the biology suggested it should?
 
 ## The setup
 
@@ -41,7 +41,7 @@ So the modelling answered a narrower question than it might appear to. It showed
 
 Two things stayed with me.
 
-First, the value of the computational part came from how tightly it was tied to the experiments. The ligands were chosen from the lipidomics, and the residues it flagged were then checked against sequence conservation across genotypes. On its own, a docking score for one fatty acid in one pocket would have meant very little.
+First, the value of the computational part came from how tightly it was tied to the experiments. We treat platform output as a hypothesis, never a result: it has to be checked against bench work, and agreement between the two is the signal we look for. The ligands were chosen from the lipidomics, and the residues it flagged were then checked against sequence conservation across genotypes. On its own, a docking score for one fatty acid in one pocket would have meant very little.
 
 Second, it is worth being precise in print about what a model does and does not establish. The gap between near-identical binding energies and three opposite biological outcomes is the honest result here, and saying so is more useful to the next group than a tidier story would be.
 
