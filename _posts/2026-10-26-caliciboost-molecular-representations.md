@@ -21,21 +21,21 @@ We compared eight molecular representations, from fingerprints to descriptor set
 
 Each representation went through the same pipeline: AutoML training (AutoGluon), feature importance with permutation importance and SHAP, retraining on the top-ranked features, and Bayesian hyperparameter optimization. Keeping the pipeline fixed meant that differences in error came from the representation, not from tuning effort.
 
-{% include figure.liquid loading="eager" path="assets/img/blog/caliciboost-workflow.jpg" class="img-fluid rounded z-depth-1" caption="The CaliciBoost workflow: one pipeline, applied to each of the eight representations." %}
+{% include figure.liquid loading="eager" path="assets/img/blog/caliciboost-workflow.jpg" class="img-fluid rounded z-depth-1" caption="The CaliciBoost workflow: one pipeline, applied to each of the eight representations. Figure from Le et al., <em>J Cheminform</em> 17:184 (2025), <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/'>CC BY-NC-ND 4.0</a>." %}
 
 We used two datasets of different scale. The TDC Caco-2 benchmark has 906 compounds, split by scaffold so that test molecules are structurally different from training ones. We also curated a larger set of 5,481 compounds from OCHEM, keeping only measurements taken under comparable conditions (apical-to-basolateral, pH 7.4, 37 °C).
 
 ## What we found
 
-{% include figure.liquid loading="lazy" path="assets/img/blog/caliciboost-mae.png" class="img-fluid rounded z-depth-1" caption="Test error on the TDC Caco-2 benchmark for each representation, before and after feature selection and tuning." %}
+{% include figure.liquid loading="lazy" path="assets/img/blog/caliciboost-mae.png" class="img-fluid rounded z-depth-1" caption="Test error on the TDC Caco-2 benchmark for each representation, before and after feature selection and tuning. Plotted from the values reported in the paper." %}
 
 Three things stood out to me.
 
-**Classical descriptors won.** PaDEL, Mordred and RDKit descriptors gave the lowest errors. The best model, built on selected PaDEL descriptors, reached a mean absolute error of 0.256 on the TDC test set and placed first on the TDC Caco-2 leaderboard. The learned CDDD embedding came last. For a property driven by physicochemistry, such as size, polarity and hydrogen bonding, descriptors that encode those quantities directly still carry the most signal.
+**Classical descriptors won.** PaDEL, Mordred and RDKit descriptors gave the lowest errors. The best model, an XGBoost regressor trained on selected PaDEL descriptors, reached a mean absolute error (MAE) of 0.2525 on the TDC test set. Evaluated under the official TDC protocol over five seeds, it scored 0.2560 ± 0.006 and ranked first on the TDC Caco-2 leaderboard. The learned CDDD embedding came last. For a property driven by physicochemistry, such as size, polarity and hydrogen bonding, descriptors that encode those quantities directly still carry the most signal.
 
 **Feature selection mattered most where there were the most features.** PaDEL and Mordred each provide well over a thousand descriptors. Trained on all of them, they were middling. Trained on a small, selected subset, they moved to the top. More features did not mean more information; past a point, they mostly added noise.
 
-**The dataset changes the ranking.** On the larger and more varied OCHEM set, errors were higher across the board and the order shifted: RDKit descriptors with feature selection did best (MAE 0.353). A representation that wins on one benchmark is not guaranteed to win on another, which is a good reason to test on more than one dataset before drawing conclusions.
+**The dataset changes the ranking.** On the larger and more varied OCHEM set, errors were higher across the board and the order shifted: RDKit descriptors with feature selection did best (MAE 0.3529). A representation that wins on one benchmark is not guaranteed to win on another, which is a good reason to test on more than one dataset before drawing conclusions.
 
 ## What I take from it
 
