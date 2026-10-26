@@ -11,7 +11,7 @@ categories: tools
 
 ## The beta: Linux and macOS only
 
-When I first tried the beta in July 2026, it ran only on macOS and Linux. To make it easier for Windows users to try it, I tested whether the Linux version would run under Windows Subsystem for Linux (WSL 2). It did, and I shared the steps as a short guide on LinkedIn on 14 July.
+When I first tried the beta in July 2026, it ran only on macOS and Linux. To make it easier for Windows users to try it, I tested whether the Linux version would run under Windows Subsystem for Linux (WSL 2). It did, and I shared the steps as a [short guide on LinkedIn](https://lnkd.in/p/gbxNGCmd) on 14 July.
 
 ## Now: a native Windows app
 
@@ -52,4 +52,4 @@ claude-science serve --port 8765 --no-browser
 
 Open the printed `http://127.0.0.1:8765` link in a Windows browser and sign in. If the link stops working, `claude-science url` prints a fresh one.
 
-For full and up-to-date steps, follow the official pages: [Get started](https://claude.com/docs/claude-science/run-on-windows) and [Run on Windows with WSL](https://claude.com/docs/claude-science/run-on-windows-wsl).
+For the official, up-to-date steps, see [Get started](https://claude.com/docs/claude-science/run-on-windows). My original WSL walkthrough is [on LinkedIn](https://lnkd.in/p/gbxNGCmd); if you follow it, use Ubuntu 24.04 as noted above.
