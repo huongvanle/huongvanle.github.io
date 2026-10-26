@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Running Claude Science on Windows, then and now
-date: 2026-10-26 10:00:00
+date: 2026-10-26 09:00:00 +0900
 description: From a WSL workaround during the beta to a native Windows app, and when the Linux route still makes sense
 tags: claude-science windows wsl tools
 categories: tools
