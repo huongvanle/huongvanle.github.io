@@ -1,0 +1,239 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Structure-based modelling of biomolecular complexes | Huong (Christine) Van Le </title> <meta name="author" content="Huong (Christine) Van Le"> <meta name="description" content="Working out how two molecules interact in three dimensions — where they bind, through which contacts, and what to change to bind better"> <meta name="keywords" content="cheminformatics, QSAR, ADMET prediction, molecular property prediction, AutoML, federated learning, molecular docking, molecular dynamics, free-energy calculations, structure-based drug design, antibody and peptide design, AI drug discovery"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://huongvanle.github.io/projects/1_structure_based_modelling/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Huong (Christine) Van Le </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item active"> <a class="nav-link" href="/projects/">projects <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/repositories/">repositories </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item "> <a class="nav-link" href="/teaching/">teaching </a> </li> <li class="nav-item "> <a class="nav-link" href="/people/">people </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">submenus </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/books/">bookshelf</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/blog/">blog</a> </div> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Structure-based modelling of biomolecular complexes</h1> <p class="post-description">Working out how two molecules interact in three dimensions — where they bind, through which contacts, and what to change to bind better</p> </header> <article> <p><strong>2021 – present</strong></p> <h2 id="why-three-dimensions">Why three dimensions</h2> <p>A two-dimensional view will tell you that two molecules are likely to interact. Feed a protein sequence and a ligand SMILES string to a model and it will give you a probability, and that is useful as a filter. What it will not tell you is <em>how</em> they interact, or <em>where</em> on the protein the interaction happens. Without that, there is no rational way to improve the ligand — only trial and error.</p> <p>Working in three dimensions changes the question. Docking and molecular dynamics show the binding mode itself: which residues on the protein carry the interaction, which groups on the ligand are doing the work, and which contacts are stable once the complex is allowed to move. That is what turns a prediction into a design strategy. If the analysis shows a hydrogen bond to a particular residue holding the complex together, the chemist knows what to keep; if a region of the ligand sits in solvent contributing nothing, they know what to change.</p> <h2 id="how-the-work-runs">How the work runs</h2> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/projects/sbm-workflow-480.webp 480w,/assets/img/projects/sbm-workflow-800.webp 800w,/assets/img/projects/sbm-workflow-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/projects/sbm-workflow.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="eager" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> <figcaption class="caption">The workflow, from sourcing structures through to ligand optimisation.</figcaption> </figure> <p>Every project starts away from the computer, with the biology: what the target does, what is known about its mechanism, and what interaction we are actually trying to explain or create.</p> <p>Then the structures have to exist. For the target protein I look for an experimental structure in the <a href="https://www.rcsb.org/" rel="external nofollow noopener" target="_blank">PDB</a> first and build an AlphaFold model only when there is none. Ligands come from PubChem where they are available, and are otherwise built and energy-minimised with RDKit. Peptides are built the same way, and complexes that need it are refined by MD before anything else happens.</p> <p>With structures in hand the pipeline runs: dock, take the lowest-energy conformers forward, predict binding affinity with an AI model, and select the hits. Those hits are profiled for ADMET, and then optimised — either to bind more tightly or to fix an ADMET liability. The interaction analysis is what makes that last step rational rather than a guess, and the loop usually runs several times.</p> <h2 id="systems-and-methods">Systems and methods</h2> <p>The same approach covers a range of complexes, which is most of the reason the work stays interesting:</p> <ul> <li> <strong>Molecular dynamics</strong> with GROMACS and Amber, across protein–ligand, protein–ligand–ion, protein–protein, protein–peptide, protein–RNA and antibody–antigen systems</li> <li> <strong>Binding free energy</strong> by MM/PBSA</li> <li> <strong>Docking</strong> — AutoDock and AutoDock Vina for small molecules, Rosetta for peptides, rDock and RLDock for RNA</li> <li> <strong>Interaction analysis</strong> in 2D and 3D with LigPlot, ProLIF and PyMOL</li> <li> <strong>Binding energy and affinity</strong> — docking scores alongside affinity predicted by a 4D-CNN model</li> <li> <strong>Structure work</strong> — 3D structure prediction for proteins, ligands, antibodies and RNA, active site prediction, and complex refinement by MD</li> <li> <strong>Pose prediction that accounts for water</strong> in the binding site</li> </ul> <p>Protein–ligand work runs as a complete pipeline on Calici’s Pharmaco-Net platform: AI-Dock for docking, DeepCalici Plus for binding affinity, InteractionViewer for contact analysis, ADME-Tox for property prediction, and ChemEdit for optimisation. The platform is built around protein–ligand systems, so peptide, antibody–antigen and RNA work runs on internal servers instead, with Python, RDKit, AutoDock Tools, AmberTools, GROMACS and PyTorch.</p> <h2 id="published-work">Published work</h2> <p><strong>Fatty acid binding in the hepatitis E virus ORF1 polyprotein.</strong> A collaboration with Professor Scott Kenney’s group at The Ohio State University, together with the Meng laboratory at Virginia Tech <a class="citation" href="#yadav2026hev">(Yadav et al., 2026)</a>. A fatty acid–binding domain had been predicted inside the viral protease region but never tested. Starting from the crystal structure, we located the pocket, docked six lipids chosen from the study’s own lipidomics, and ran MD with MM/PBSA on the resulting complexes. Four long-chain fatty acids bound favourably and the two compounds that fell during infection did not, and the residues the modelling identified turned out to be conserved across exactly the genotypes that carry the domain. I have written about <a href="/blog/2026/docking-md-hepatitis-e-virus/">what that study did and did not settle</a>.</p> <p><strong>A binding pocket on TEAD4 that regulates phosphorylated VGLL1</strong> <a class="citation" href="#choi2024vgll1">(Choi et al., 2024)</a>, presented at the AACR Annual Meeting 2024. The work characterised a positively charged pocket on the TEAD4 surface and how it governs the interaction with phosphorylated VGLL1 — a protein–protein interface rather than a small-molecule site, and a good example of the same structural approach applied to a target class where there is no obvious pocket to dock into.</p> </article> <h2>References</h2> <div class="publications"> <h2 class="bibliography">2026</h2> <ol class="bibliography"><li> <div class="row"> <div class="col col-sm-2 abbr"> <abbr class="badge rounded w-100">PNAS</abbr> <figure> <picture> <img src="/assets/img/publication_preview/pnas_hev.png" class="preview z-depth-1 rounded" width="100%" height="auto" alt="pnas_hev.png" data-zoomable loading="eager" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> </figure> </div> <div id="yadav2026hev" class="col-sm-8"> <div class="title">Fatty acid regulation and phosphatidylethanolamine biosynthesis are important for hepatitis E virus replication</div> <div class="author"> Kush Kumar Yadav, Menuka Bhandari, Hassan M. Mahsoub, Young Bin Park, <em>Huong Van Le</em>, Jae Mun Choi, Hannah M. Brown, Gireesh Rajashekara, Scott P. Kenney, and Xiang-Jin Meng </div> <div class="periodical"> <em>Proceedings of the National Academy of Sciences</em>, 2026 </div> <div class="periodical"> </div> <div class="links"> <a href="https://doi.org/10.1073/pnas.2614150123" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">DOI</a> <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a> <a href="https://doi.org/10.1073/pnas.2614150123" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">HTML</a> </div> <div class="bibtex hidden"> <figure class="highlight"><pre><code class="language-bibtex" data-lang="bibtex"><span class="nc">@article</span><span class="p">{</span><span class="nl">yadav2026hev</span><span class="p">,</span>
+  <span class="na">title</span> <span class="p">=</span> <span class="s">{Fatty acid regulation and phosphatidylethanolamine biosynthesis are important for hepatitis E virus replication}</span><span class="p">,</span>
+  <span class="na">author</span> <span class="p">=</span> <span class="s">{Yadav, Kush Kumar and Bhandari, Menuka and Mahsoub, Hassan M. and Park, Young Bin and Le, Huong Van and Choi, Jae Mun and Brown, Hannah M. and Rajashekara, Gireesh and Kenney, Scott P. and Meng, Xiang-Jin}</span><span class="p">,</span>
+  <span class="na">journal</span> <span class="p">=</span> <span class="s">{Proceedings of the National Academy of Sciences}</span><span class="p">,</span>
+  <span class="na">volume</span> <span class="p">=</span> <span class="s">{123}</span><span class="p">,</span>
+  <span class="na">number</span> <span class="p">=</span> <span class="s">{27}</span><span class="p">,</span>
+  <span class="na">year</span> <span class="p">=</span> <span class="s">{2026}</span><span class="p">,</span>
+  <span class="na">doi</span> <span class="p">=</span> <span class="s">{10.1073/pnas.2614150123}</span><span class="p">,</span>
+<span class="p">}</span></code></pre></figure> </div> </div> </div> </li></ol> <h2 class="bibliography">2024</h2> <ol class="bibliography"><li> <div class="row"> <div class="col col-sm-2 abbr"> <abbr class="badge rounded w-100">AACR</abbr> </div> <div id="choi2024vgll1" class="col-sm-8"> <div class="title">Regulation of phosphorylated VGLL1 by the positively charged binding pocket on the surface of TEAD4</div> <div class="author"> Jae Mun Choi, <em>Huong Van Le</em>, Young Bin Park, Yu Kyung Yun, Jun Hong Kim, Jonathan Wilianto, N. Shadiev, and others </div> <div class="periodical"> <em>In Cancer Research (Proceedings of the AACR Annual Meeting 2024)</em>, 2024 </div> <div class="periodical"> </div> <div class="links"> <a href="https://doi.org/10.1158/1538-7445.AM2024-7384" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">DOI</a> <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a> <a href="https://doi.org/10.1158/1538-7445.AM2024-7384" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">HTML</a> </div> <div class="bibtex hidden"> <figure class="highlight"><pre><code class="language-bibtex" data-lang="bibtex"><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">choi2024vgll1</span><span class="p">,</span>
+  <span class="na">title</span> <span class="p">=</span> <span class="s">{Regulation of phosphorylated VGLL1 by the positively charged binding pocket on the surface of TEAD4}</span><span class="p">,</span>
+  <span class="na">author</span> <span class="p">=</span> <span class="s">{Choi, Jae Mun and Le, Huong Van and Park, Young Bin and Yun, Yu Kyung and Kim, Jun Hong and Wilianto, Jonathan and Shadiev, N. and others}</span><span class="p">,</span>
+  <span class="na">booktitle</span> <span class="p">=</span> <span class="s">{Cancer Research (Proceedings of the AACR Annual Meeting 2024)}</span><span class="p">,</span>
+  <span class="na">volume</span> <span class="p">=</span> <span class="s">{84}</span><span class="p">,</span>
+  <span class="na">number</span> <span class="p">=</span> <span class="s">{6 Supplement}</span><span class="p">,</span>
+  <span class="na">pages</span> <span class="p">=</span> <span class="s">{7384}</span><span class="p">,</span>
+  <span class="na">year</span> <span class="p">=</span> <span class="s">{2024}</span><span class="p">,</span>
+  <span class="na">doi</span> <span class="p">=</span> <span class="s">{10.1158/1538-7445.AM2024-7384}</span><span class="p">,</span>
+<span class="p">}</span></code></pre></figure> </div> </div> </div> </li></ol> </div> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Huong (Christine) Van Le. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-publications",
+          title: "publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "Research themes I work on, and the published work behind them.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-repositories",
+          title: "repositories",
+          description: "Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/repositories/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "nav-teaching",
+          title: "teaching",
+          description: "Course materials, schedules, and resources for classes taught.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/teaching/";
+          },
+        },{id: "nav-people",
+          title: "people",
+          description: "members of the lab or group",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/people/";
+          },
+        },{id: "dropdown-bookshelf",
+              title: "bookshelf",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/books/";
+              },
+            },{id: "dropdown-blog",
+              title: "blog",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/blog/";
+              },
+            },{id: "post-docking-and-md-for-a-viral-protein-pocket-and-what-they-could-not-settle",
+        
+          title: "Docking and MD for a viral protein pocket, and what they could not...",
+        
+        description: "Notes on the in silico part of our PNAS study on fatty acids and hepatitis E virus replication",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/docking-md-hepatitis-e-virus/";
+          
+        },
+      },{id: "post-what-caliciboost-taught-me-about-molecular-representations",
+        
+          title: "What CaliciBoost taught me about molecular representations",
+        
+        description: "Notes on our Journal of Cheminformatics paper comparing eight molecular representations for Caco-2 permeability prediction",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/caliciboost-molecular-representations/";
+          
+        },
+      },{id: "post-running-claude-science-on-windows-then-and-now",
+        
+          title: "Running Claude Science on Windows, then and now",
+        
+        description: "From a WSL workaround during the beta to a native Windows app, and when the Linux route still makes sense",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/claude-science-on-windows/";
+          
+        },
+      },{id: "books-the-godfather",
+          title: 'The Godfather',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/the_godfather/";
+            },},{id: "news-a-simple-inline-announcement",
+          title: 'A simple inline announcement.',
+          description: "",
+          section: "News",},{id: "news-a-long-announcement-with-details",
+          title: 'A long announcement with details',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/announcement_2/";
+            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
+          title: 'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',
+          description: "",
+          section: "News",},{id: "projects-structure-based-modelling-of-biomolecular-complexes",
+          title: 'Structure-based modelling of biomolecular complexes',
+          description: "Working out how two molecules interact in three dimensions — where they bind, through which contacts, and what to change to bind better",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_structure_based_modelling/";
+            },},{id: "teachings-data-science-fundamentals",
+          title: 'Data Science Fundamentals',
+          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/data-science-fundamentals/";
+            },},{id: "teachings-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/introduction-to-machine-learning/";
+            },},{
+        id: 'social-cv',
+        title: 'CV',
+        section: 'Socials',
+        handler: () => {
+          window.open("/assets/pdf/example_pdf.pdf", "_blank");
+        },
+      },{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%79%6F%75@%65%78%61%6D%70%6C%65.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-inspire',
+        title: 'Inspire HEP',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://inspirehep.net/authors/1010907", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=qc6CJjYAAAAJ", "_blank");
+        },
+      },{
+        id: 'social-custom_social',
+        title: 'Custom_social',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.alberteinstein.com/", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
