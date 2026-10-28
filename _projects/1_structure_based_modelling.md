@@ -18,13 +18,17 @@ Working in three dimensions changes the question. Docking and molecular dynamics
 
 ## How the work runs
 
-{% include figure.liquid loading="eager" path="assets/img/projects/sbm-workflow.png" class="img-fluid rounded z-depth-1" caption="The workflow, from sourcing structures through to ligand optimisation." %}
+{% include figure.liquid loading="eager" path="assets/img/projects/sbm-workflow.png" class="img-fluid rounded z-depth-1" caption="From sourcing structures, through the computational cycle, to experimental validation and what follows it." %}
 
 Every project starts away from the computer, with the biology: what the target does, what is known about its mechanism, and what interaction we are actually trying to explain or create.
 
 Then the structures have to exist. For the target protein I look for an experimental structure in the [PDB](https://www.rcsb.org/) first and build an AlphaFold model only when there is none. Ligands come from PubChem where they are available, and are otherwise built and energy-minimised with RDKit. Peptides are built the same way, and complexes that need it are refined by MD before anything else happens.
 
-With structures in hand the pipeline runs: dock, take the lowest-energy conformers forward, predict binding affinity with an AI model, and select the hits. Those hits are profiled for ADMET, and then optimised — either to bind more tightly or to fix an ADMET liability. The interaction analysis is what makes that last step rational rather than a guess, and the loop usually runs several times.
+With structures in hand the pipeline runs: dock, take the lowest-energy conformers forward, run MD with MM/PBSA to check that the complex is stable and to get a binding free energy, predict binding affinity with an AI model, and select the hits. Those hits are profiled for ADMET, and then optimised — either to bind more tightly or to fix an ADMET liability.
+
+Optimisation is not the end of it. Each modified compound goes back through the same cycle, so that a change made to improve binding is checked for what it costs elsewhere, and the loop runs until the predictions settle. The interaction analysis is what makes each round rational rather than a guess: it says which contacts to preserve and which part of the molecule has room to change. What comes out is a set of candidate leads.
+
+Those predictions then have to survive contact with an experiment. Our collaborators test the candidates at the bench, and that is the only step that settles whether the modelling was right — including about the compounds it ranked highly that turn out to do nothing, which are as informative as the ones that work. When the leads are confirmed, the work goes forward: a paper, a patent filing, and the deeper studies that follow. That last stage is also what keeps the method honest, because every project ends with a measurement of how good the predictions actually were.
 
 ## Systems and methods
 
