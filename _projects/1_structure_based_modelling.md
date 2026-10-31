@@ -42,7 +42,7 @@ The same approach covers a range of complexes, which is most of the reason the w
 - **Structure work** — 3D structure prediction for proteins, ligands, antibodies and RNA, active site prediction, and complex refinement by MD
 - **Pose prediction that accounts for water** in the binding site
 
-Protein–ligand work runs as a complete pipeline on Calici's Pharmaco-Net platform: AI-Dock for docking, DeepCalici Plus for binding affinity, InteractionViewer for contact analysis, ADME-Tox for property prediction, and ChemEdit for optimisation. The platform is built around protein–ligand systems, so peptide, antibody–antigen and RNA work runs on internal servers instead, with Python, RDKit, AutoDock Tools, AmberTools, GROMACS and PyTorch.
+Protein–ligand work runs as a complete pipeline on Calici's [Pharmaco-Net](https://pharmaco-net.org/) platform: AI-Dock for docking, DeepCalici Plus for binding affinity, InteractionViewer for contact analysis, ADME-Tox for property prediction, and ChemEdit for optimisation. The platform is built around protein–ligand systems, so peptide, antibody–antigen and RNA work runs on internal servers instead, with Python, RDKit, AutoDock Tools, AmberTools, GROMACS and PyTorch.
 
 ## Published work
 
