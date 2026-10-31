@@ -32,7 +32,7 @@ I led this work end to end — choosing the problem and the benchmark, directing
 
 ## Many endpoints, one shared model
 
-The second strand uses the endpoints themselves as the extra signal. If absorption, metabolism and toxicity all depend on overlapping structural features, a model that learns them together can let a sparse endpoint borrow representation from a well-populated one.
+The second strand uses the endpoints themselves as the extra signal. Absorption, distribution, metabolism, excretion and toxicity are not independent of one another: they all turn on overlapping structural features, such as size, lipophilicity and polarity. A model that learns them together can therefore let a sparse endpoint borrow representation from a well-populated one.
 
 I built a multitask model on a multi-granularity graph attention architecture, following the approach behind ADMETlab, trained on public collections and covering 88 endpoints across physicochemical properties, medicinal-chemistry rules, absorption, distribution, metabolism and toxicity. It now runs as the ADME-Tox module of Calici's Pharmaco-Net platform. My part ran from selecting and testing the baseline architecture through curating the training data and fine-tuning, to preparing the trained model and the code our engineering team needed to integrate it.
 
