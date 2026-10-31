@@ -1,7 +1,7 @@
 ---
 layout: page
 title: ADMET prediction under limited and heterogeneous data
-description: Predicting absorption and toxicity from structure when the data is small, noisy, and cannot be shared
+description: Predicting absorption, distribution, metabolism, excretion, and toxicity (ADMET) from structure when the data is small, noisy, and cannot be shared
 img: assets/img/projects/admet-three-ways.png
 importance: 2
 category: research
