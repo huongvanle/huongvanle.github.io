@@ -48,3 +48,29 @@ html[data-theme="dark"] {
   --global-theme-color: #6fa3ef;
   --global-hover-color: #6fa3ef;
 }
+
+/*******************************************************************************
+ * Site override: line up the project cards.
+ * Project thumbnails are diagrams with different aspect ratios, so without a
+ * fixed image box each card starts its text at a different height. Give every
+ * thumbnail the same 16:9 box and fit the diagram inside it, so the titles and
+ * descriptions of the cards in a row sit on the same line.
+ ******************************************************************************/
+.projects .card > figure {
+  margin: 0;
+}
+
+.projects .card-img-top {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  padding: 0.4rem;
+  background-color: var(--global-card-bg-color, #fff);
+}
+
+@supports not (aspect-ratio: 16 / 9) {
+  .projects .card-img-top {
+    height: 170px;
+  }
+}
