@@ -26,7 +26,7 @@ The first strand asks what you can gain without more data at all, by changing ho
 
 CaliciBoost {% cite le2025caliciboost %} is a systematic comparison of eight molecular representations for Caco-2 permeability, run through one fixed pipeline so that the differences came from the representation rather than from tuning effort. On a benchmark of 906 compounds with a scaffold split, selected PaDEL descriptors with an XGBoost regressor reached an MAE of 0.2525, and under the official five-seed TDC protocol the model scored 0.2560 ± 0.006 and ranked first on the Caco-2 leaderboard.
 
-The result I keep returning to is the negative one: with roughly a thousand compounds, classical descriptors beat a learned embedding, and careful feature selection mattered more than model capacity. There is a saying in Vietnam about not using a buffalo knife to cut fish. It applies here.
+The result I keep returning to is the negative one: with roughly a thousand compounds, classical descriptors beat a learned embedding, and careful feature selection mattered more than model capacity. On a dataset this size, reaching for a larger architecture is using a sledgehammer to crack a nut.
 
 I led this work end to end — choosing the problem and the benchmark, directing the data curation and feature selection, sharing the model training with a colleague, writing the main sections, and handling submission and revision as first author. I have also written about [what it taught me about molecular representations]({{ '/blog/2026/caliciboost-molecular-representations/' | relative_url }}).
 
