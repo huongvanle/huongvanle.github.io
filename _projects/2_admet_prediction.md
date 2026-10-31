@@ -12,7 +12,7 @@ related_publications: true
 
 ## The constraint that shapes everything
 
-Whether a compound is absorbed, how it is metabolised and whether it harms the liver — these are the properties that decide if a molecule ever becomes a medicine, and all of them can in principle be predicted from structure. The difficulty is the data.
+How much of a compound reaches the bloodstream, where it travels once it is there, how quickly the body breaks it down and clears it, and whether it does harm along the way — these are the properties that decide whether a molecule ever becomes a medicine, and in principle every one of them can be predicted from structure alone. The difficulty is the data.
 
 For most ADMET endpoints the public record runs to a few hundred or a few thousand measurements, gathered by different laboratories under assay conditions that do not quite match. The measurements that would help most are held inside pharmaceutical companies and hospitals, where they cannot leave. So the useful question is rarely which architecture is most powerful. It is how to build something that stays reliable when the data is this thin, this noisy, and this scattered.
 
