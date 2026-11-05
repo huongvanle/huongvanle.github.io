@@ -1,6 +1,3 @@
+# Populated when the repositories page is built.
 github_users:
-  - huongvanle
-
-repo_description_lines_max: 2
-
 github_repos:
