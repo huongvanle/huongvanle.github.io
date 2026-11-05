@@ -1,12 +1,12 @@
 ---
-layout: cv
+layout: page
 permalink: /cv/
 title: CV
 nav: true
 nav_order: 5
-cv_pdf: /assets/pdf/example_pdf.pdf # you can also use external links here
-cv_format: rendercv # options: rendercv, jsonresume
-description: This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.
-toc:
-  sidebar: left
+description: In preparation.
 ---
+
+A full CV is being prepared and will be posted here.
+
+In the meantime, the [publications]({{ '/publications/' | relative_url }}) page lists my papers and patents, and the [projects]({{ '/projects/' | relative_url }}) pages describe the research behind them.
