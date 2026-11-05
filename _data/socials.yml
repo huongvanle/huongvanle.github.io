@@ -1,9 +1,8 @@
 # Social links shown on the about page, in the order defined here.
 # Docs: https://github.com/george-gca/jekyll-socials
 email: huongvanle.ust@gmail.com
+scholar_userid: NL0VFr0AAAAJ
+linkedin_username: huong-christine-van-le-0104
 github_username: huongvanle
 rss_icon: false
-# Add once the profile URLs are confirmed:
-# scholar_userid: # the value of the `user=` parameter in your Google Scholar URL
-# linkedin_username: # the part after /in/ in your LinkedIn URL
-# orcid_id: # 0000-0000-0000-0000
+# orcid_id: # add once registered at https://orcid.org
