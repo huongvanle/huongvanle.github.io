@@ -120,6 +120,9 @@ html[data-theme="dark"] {
 .cv p.location {
   white-space: normal;
   overflow-wrap: anywhere;
+  /* Break after the comma rather than mid-place-name, so a two-word country
+     or city stays whole on its own line. */
+  text-wrap: balance;
 }
 
 .cv .col-md-10 h6,
