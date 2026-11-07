@@ -74,3 +74,50 @@ html[data-theme="dark"] {
     height: 170px;
   }
 }
+
+/*******************************************************************************
+ * Site override: CV page layout.
+ * The timeline entries are list items, so the browser draws a bullet that
+ * collides with the date badge. Drop the markers, give the date column a
+ * single left edge so the date and the location line up, and justify the
+ * running text so the page reads as one clean block.
+ ******************************************************************************/
+.cv ul.list-group {
+  list-style: none;
+  padding-left: 0;
+}
+
+.cv ul.list-group > li.list-group-item {
+  list-style: none;
+}
+
+.cv ul.list-group > li.list-group-item::marker {
+  content: "";
+}
+
+.cv .date-column {
+  text-align: left;
+}
+
+.cv .date-column .table-cv {
+  width: 100%;
+}
+
+.cv .date-column .badge {
+  display: inline-block;
+  margin-bottom: 0.15rem;
+}
+
+.cv .date-column .location {
+  margin: 0;
+  padding-top: 0.1rem;
+  line-height: 1.35;
+}
+
+.cv .col-md-10 h6,
+.cv .items .item,
+.cv p:not(.location) {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}

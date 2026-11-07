@@ -12,7 +12,7 @@ cv:
 
   address:
     city: Daejeon
-    countryCode: KR
+    region: South Korea
 
   social_networks:
     - network: LinkedIn
@@ -97,7 +97,7 @@ cv:
         url: https://tdcommons.ai/benchmark/admet_group/2caco2/
         summary: Achieved with the CaliciBoost model, MAE 0.2560 ± 0.006 over five seeds.
 
-    Selected publications:
+    Publications:
       - title: Fatty acid regulation and phosphatidylethanolamine biosynthesis are important for hepatitis E virus replication
         authors:
           - Yadav KK, Bhandari M, Mahsoub HM, Park YB, <b>Le HV</b>, Choi JM, Brown HM, Rajashekara G, Kenney SP, Meng X-J
