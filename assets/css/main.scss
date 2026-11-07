@@ -114,6 +114,13 @@ html[data-theme="dark"] {
   line-height: 1.35;
 }
 
+/* The theme sets the location line to nowrap, which overflows the narrow
+   date column on phones and runs under the text beside it. */
+.cv p.location {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
 .cv .col-md-10 h6,
 .cv .items .item,
 .cv p:not(.location) {
