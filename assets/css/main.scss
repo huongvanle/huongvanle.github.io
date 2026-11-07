@@ -95,8 +95,9 @@ html[data-theme="dark"] {
   content: "";
 }
 
-.cv .date-column {
-  text-align: left;
+.cv .date-column,
+.cv .date-column .location {
+  text-align: center;
 }
 
 .cv .date-column .table-cv {
