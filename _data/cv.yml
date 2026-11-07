@@ -1,2 +1,147 @@
-# Populated when the CV page is built.
 cv:
+  name: Huong (Christine) Van Le
+  label: AI and computational drug discovery
+  email: huongvanle.ust@gmail.com
+  location: Daejeon, South Korea
+  image: ""
+  summary: >
+    I lead the AI team at Calici Co., Ltd., working at the intersection of machine learning and
+    computational drug discovery. My research covers molecular property and ADMET prediction under
+    limited data, structure-based modelling of biomolecular complexes, and the computational design
+    of peptide and antibody therapeutics. I am preparing to pursue doctoral research in this field.
+
+  social_networks:
+    - network: LinkedIn
+      username: huong-christine-van-le-0104
+    - network: GitHub
+      username: huongvanle
+
+  sections:
+    Education:
+      - institution: University of Science and Technology (UST)
+        location: Daejeon, South Korea
+        url: https://www.ust.ac.kr/
+        area: Science and Technology Information Science
+        studyType: M.S.
+        start_date: 2015
+        end_date: 2018
+        highlights:
+          - Research conducted at the Korea Institute of Science and Technology Information (KISTI).
+          - Thesis research on innovation and technology trends, published in <i>Technological Forecasting and Social Change</i> (2019).
+
+      - institution: La Trobe University
+        location: Melbourne, Australia
+        url: https://www.latrobe.edu.au/
+        area: International Business and Economics
+        studyType: Master of International Business
+        start_date: 2012
+        end_date: 2013
+
+      - institution: Foreign Trade University
+        location: Hanoi, Vietnam
+        url: https://www.ftu.edu.vn/
+        area: International Business and Economics
+        studyType: Bachelor
+        start_date: 2008
+        end_date: 2012
+        highlights:
+          - English-taught programme.
+
+    Experience:
+      - company: Calici Co., Ltd.
+        position: AI Team Lead
+        location: Daejeon, South Korea
+        start_date: 2021-07
+        end_date: Present
+        summary: >
+          Joined as the company's first employee and now lead the AI team, working across
+          internal platform development and research collaborations with universities,
+          institutes and pharmaceutical companies in Korea and abroad.
+        highlights:
+          - Built and benchmarked molecular property and ADMET prediction models, including a multitask model now in production.
+          - First author of CaliciBoost (<i>Journal of Cheminformatics</i>, 2025), ranked first on the TDC Caco-2 permeability leaderboard.
+          - Carried out structure-based modelling — docking, molecular dynamics and MM/PBSA — for collaborative studies, including a 2026 <i>PNAS</i> paper on hepatitis E virus replication.
+          - Co-inventor on three US patents covering GPU-based drug discovery systems.
+          - Lead computational design campaigns for peptide and antibody therapeutics, and represent the company in national research consortia.
+
+      - company: Appen
+        position: Data Analyst
+        location: Remote
+        start_date: 2018-03
+        end_date: 2022-03
+        summary: Part-time analytics work alongside graduate study and early years at Calici.
+
+      - company: Korea Institute of Science and Technology Information (KISTI)
+        position: Graduate Student Researcher
+        location: Daejeon, South Korea
+        start_date: 2015-03
+        end_date: 2018-03
+        highlights:
+          - Quantitative research on technology and innovation trends, leading to a first-author paper in <i>Technological Forecasting and Social Change</i>.
+          - Prepared research proposals and presented at academic conferences.
+
+      - company: Fujitsu Vietnam
+        position: Project Assistant
+        location: Hanoi, Vietnam
+        start_date: 2014-01
+        end_date: 2015-01
+
+    Awards:
+      - title: First place, TDC Caco-2 permeability leaderboard
+        date: 2025
+        awarder: Therapeutics Data Commons
+        url: https://tdcommons.ai/benchmark/admet_group/2caco2/
+        summary: Achieved with the CaliciBoost model, MAE 0.2560 ± 0.006 over five seeds.
+
+    Selected publications:
+      - title: Fatty acid regulation and phosphatidylethanolamine biosynthesis are important for hepatitis E virus replication
+        authors:
+          - Yadav KK, Bhandari M, Mahsoub HM, Park YB, <b>Le HV</b>, Choi JM, Brown HM, Rajashekara G, Kenney SP, Meng X-J
+        publisher: Proceedings of the National Academy of Sciences 123(27)
+        releaseDate: 2026
+        url: https://doi.org/10.1073/pnas.2614150123
+
+      - title: "CaliciBoost: Performance-driven evaluation of molecular representations for Caco-2 permeability prediction"
+        authors:
+          - <b>Le HV</b>, Ren W, Kim J, Yun Y, Park YB, Kim YJ, Han BK, Choi I, Park J-I, Yun H-y, Choi J-M
+        publisher: Journal of Cheminformatics 17, 184
+        releaseDate: 2025
+        url: https://doi.org/10.1186/s13321-025-01137-7
+
+      - title: Multi-instance GPU-based system for discovering drug candidate
+        authors:
+          - Choi JM, Park YB, Sung C, <b>Le VH</b>, Tran TT, Yun YK, Park JH, Wilianto J, Shadiev N
+        publisher: US Patent 12,505,901
+        releaseDate: 2025
+
+      - title: Changing trends in internet startup value propositions, from the perspective of customer
+        authors:
+          - <b>Le HV</b>, Suh M
+        publisher: Technological Forecasting and Social Change 146, 853–864
+        releaseDate: 2019
+        url: https://doi.org/10.1016/j.techfore.2018.06.021
+
+    Skills:
+      - name: Machine learning
+        icon: fa-solid fa-brain
+        keywords: "AutoML, gradient boosting, graph neural networks, multitask learning, federated learning, model benchmarking and evaluation"
+
+      - name: Cheminformatics
+        icon: fa-solid fa-flask
+        keywords: "RDKit, PaDEL, Mordred, molecular fingerprints and descriptors, ADMET and toxicity prediction, virtual screening"
+
+      - name: Structural modelling
+        icon: fa-solid fa-cubes
+        keywords: "AutoDock and AutoDock Vina, GROMACS, Amber, MM/PBSA, PyMOL, ProLIF, protein structure prediction"
+
+      - name: Programming
+        icon: fa-solid fa-code
+        keywords: "Python, R, Bash, PyTorch, scikit-learn, data pipelines"
+
+    Languages:
+      - name: Vietnamese
+        summary: Native
+      - name: English
+        summary: IELTS 7.0 (2012), TOEIC 895 (2019)
+      - name: Korean
+        summary: TOPIK level 5 (2019)
