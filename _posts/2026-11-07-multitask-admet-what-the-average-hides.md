@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Multitask ADMET models, and what the average improvement hides
-date: 2026-11-07 18:00:00 +0900
+date: 2026-11-07 11:00:00 +0900
 description: Why training many ADMET endpoints in one model is not free, and why the mean across tasks is the wrong thing to report
 tags: machine-learning admet multitask-learning evaluation
 categories: research
