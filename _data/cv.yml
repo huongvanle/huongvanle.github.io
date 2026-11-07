@@ -1,6 +1,6 @@
 cv:
   name: Huong (Christine) Van Le
-  label: AI and computational drug discovery
+  label: AI Team Lead, Calici Co., Ltd.
   email: huongvanle.ust@gmail.com
   location: Daejeon, South Korea
   image: ""
@@ -9,6 +9,10 @@ cv:
     computational drug discovery. My research covers molecular property and ADMET prediction under
     limited data, structure-based modelling of biomolecular complexes, and the computational design
     of peptide and antibody therapeutics. I am preparing to pursue doctoral research in this field.
+
+  address:
+    city: Daejeon
+    countryCode: KR
 
   social_networks:
     - network: LinkedIn
