@@ -115,8 +115,38 @@ cv:
       - title: Multi-instance GPU-based system for discovering drug candidate
         authors:
           - Choi JM, Park YB, Sung C, <b>Le VH</b>, Tran TT, Yun YK, Park JH, Wilianto J, Shadiev N
-        publisher: US Patent 12,505,901
+        publisher: US Patent 12,505,901 (App. 18/878,959)
         releaseDate: 2025
+
+      - title: Discovery system for candidates based on target protein structures and its operation method
+        authors:
+          - Choi JM, Park YB, Sung C, <b>Le VH</b>, Tran TT, Yun YK, Park JH, Wilianto J, Shadiev N
+        publisher: US Patent Application 18/878,969
+        releaseDate: 2025
+
+      - title: New drug candidate discovery system and computer program implementing new drug candidate discovery platform
+        authors:
+          - Choi JM, Park JH, Wilianto J, <b>Le VH</b>, Mailibay D, Shadiev N, Yun YK, Sung C, Park YB
+        publisher: US Patent Application 18/276,808
+        releaseDate: 2025
+
+      - title: Regulation of phosphorylated VGLL1 by the positively charged binding pocket on the surface of TEAD4
+        authors:
+          - Choi J, <b>Le H</b>, Park Y, Yun Y, Kim J, Wilianto J, Shadiev N, Sung C, Ku B, Chang K-Y, Won M
+        publisher: AACR Annual Meeting 2024, San Diego
+        releaseDate: 2024
+
+      - title: "Advanced human-AI interface for the drug discovery process, Pharmaco-Net"
+        authors:
+          - Choi JM, <b>Le HV</b>, Tran TT, Park J, Wilianto W, Shadiev N, Yun YK, Sung C, Park YB
+        publisher: AsCA 2022, Jeju
+        releaseDate: 2022
+
+      - title: Data preprocessing and docking site discovery using NLP for in silico drug discovery
+        authors:
+          - Yun YK, Choi JM, <b>Le HV</b>, Mailibay D, Wilianto J, Park JH, Shadiev N, Sung C, Kim YK
+        publisher: Journal of KIISE, 585–587
+        releaseDate: 2022
 
       - title: Changing trends in internet startup value propositions, from the perspective of customer
         authors:
