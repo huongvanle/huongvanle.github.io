@@ -1,0 +1,199 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Coverage is not a property of a dataset | Huong (Christine) Van Le </title> <meta name="author" content="Huong (Christine) Van Le"> <meta name="description" content="On what it means for a chemical dataset to have a hole in it, and why the answer depends on who is asking"> <meta name="keywords" content="cheminformatics, QSAR, ADMET prediction, molecular property prediction, AutoML, federated learning, molecular docking, molecular dynamics, free-energy calculations, structure-based drug design, antibody and peptide design, AI drug discovery"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://huongvanle.github.io/blog/2026/coverage-is-not-a-property-of-a-dataset/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Huong (Christine) Van Le </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/research/">research </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">projects </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Coverage is not a property of a dataset</h1> <p class="post-meta"> Created on November 08, 2026 </p> <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/cheminformatics"> <i class="fa-solid fa-hashtag fa-sm"></i> cheminformatics</a>   <a href="/blog/tag/admet"> <i class="fa-solid fa-hashtag fa-sm"></i> admet</a>   <a href="/blog/tag/machine-learning"> <i class="fa-solid fa-hashtag fa-sm"></i> machine-learning</a>   <a href="/blog/tag/evaluation"> <i class="fa-solid fa-hashtag fa-sm"></i> evaluation</a>   ·   <a href="/blog/category/research"> <i class="fa-solid fa-tag fa-sm"></i> research</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>Most of the time, a model’s relationship to its training data is treated as a filter. A prediction comes out, you ask whether the query compound falls inside the applicability domain, and if it does not you discount the number. That is a defensive question, and a useful one.</p> <p>Lately I have been thinking about the same relationship from the other side. Suppose you are not only consuming a dataset but able to add to it — you can ask a laboratory to measure a handful of new compounds, and you have to say which ones. The defensive question becomes a design question: not <em>is this prediction trustworthy</em>, but <em>what is this dataset missing, and what should we measure next</em>.</p> <p>It sounds like a straightforward thing to work out. Project the dataset into some space, look for the empty regions, go and fill them. The more I look at it, the less straightforward it gets, and the reason is that the word “missing” does not survive contact with a definition.</p> <h2 id="datasets-have-the-shape-of-the-projects-that-produced-them">Datasets have the shape of the projects that produced them</h2> <p>Public ADMET data is not a sample of chemical space. It is an accumulation of whatever a few hundred medicinal chemistry programmes happened to make, measured by whichever laboratories happened to publish. Compounds arrive in series: a scaffold, then thirty variations on it, because that is how optimisation campaigns work. Whole regions are dense because a target was fashionable in 2009, and whole regions are empty because nobody had a reason to go there.</p> <p>A model trained on that inherits the shape. It will be confident in the neighbourhoods where the data piled up and uninformative everywhere else, and the boundary between the two has nothing to do with where chemistry is interesting. So the instinct to go and fill the empty parts is sound. The difficulty is saying which parts those are.</p> <h2 id="empty-relative-to-what">Empty relative to what?</h2> <p>The first problem is that a hole needs a reference. A dataset is not empty in the abstract; it is empty relative to some universe you think it ought to cover.</p> <p>Pick ChEMBL as the universe and your gaps are wherever bioactive chemistry has been explored but your assay has not followed. Pick a purchasable catalogue and the gaps move to wherever compounds are cheaply available and untested — a much more actionable set, and a much more commercially biased one, because catalogues reflect what is easy to make. Pick the chemotypes around one target family and you get a third answer again, narrower and more useful for one programme and useless for the next.</p> <p>These are not refinements of a single question. They are three different questions that produce three different shopping lists, and the choice between them is made before any analysis happens. I have read a reasonable amount of work in this area and the reference set is very often left implicit.</p> <h2 id="empty-in-which-space">Empty in which space?</h2> <p>The second problem is sharper, and it is the one I keep coming back to, because I ran into the evidence for it in my own published work.</p> <p>Emptiness is a statement about density, and density requires a metric. Write $\phi$ for whatever featurisation turns a molecule into a vector. It induces a distance</p> \[d_\phi(x, y) = \lVert \phi(x) - \phi(y) \rVert\] <p>and a hole is a region where the density of the dataset under $d_\phi$ is low while its surroundings are not. Nothing in that definition is a property of the molecules alone. Change $\phi$ and you change which compounds count as neighbours, which changes where the density is low, which changes what is missing.</p> <p>That is not a theoretical worry. In <a href="/blog/2026/caliciboost-molecular-representations/">CaliciBoost</a> we compared eight molecular representations on one permeability task through a single fixed pipeline, and they did not agree — not on performance, and by implication not on which compounds resemble which. If eight featurisations disagree about similarity, they disagree about holes.</p> <p>Here is the effect on a library I enumerated to look at it directly. Same molecules, two standard featurisations, each reduced to two dimensions and binned on the same grid; a hatched cell is an empty region fully enclosed by occupied ones.</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/blog/chemical-space-holes-480.webp 480w,/assets/img/blog/chemical-space-holes-800.webp 800w,/assets/img/blog/chemical-space-holes-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/blog/chemical-space-holes.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="eager" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> <figcaption class="caption">One set of 1,718 enumerated molecules under two featurisations. Substructure fingerprints report twenty enclosed empty regions; physicochemical descriptors report one. The 123 compounds immediately surrounding a chosen hole on the left occupy seven cells there and twenty-nine on the right, next to no hole at all.</figcaption> </figure> <p>The two panels are the same compounds. One space says this library is full of holes; the other says it is essentially solid. And the compounds that sit on the rim of a gap in the first space — the ones you would reach for if you were trying to fill it — are scattered across the second, bordering nothing.</p> <p>I want to be careful not to overstate what a figure like this shows. It is an enumerated library, not a real assay set, and two dimensions of PCA is a crude view of either space. But the direction of the effect is not an artefact of those choices, and it is enough to make the point that interests me: <strong>a gap is a property of a dataset and a featurisation together, and the featurisation is a modelling decision somebody made.</strong> Two groups can analyse the same dataset, both honestly conclude that it has holes, and commission entirely different experiments.</p> <h2 id="you-cannot-order-a-point-in-chemical-space">You cannot order a point in chemical space</h2> <p>There is a third difficulty, and it is the one I suspect is least appreciated in the machine learning literature, because it does not arise in the settings where that literature was developed.</p> <p>Active learning assumes a pool. You identify the most informative point and you query its label. In a laboratory you cannot do that. What you identify is a <em>location</em> — a position $z$ in feature space where data would help — and what you can actually buy or make is whatever the catalogue happens to contain:</p> \[x^\star = \operatorname*{arg\,min}_{x \,\in\, \mathcal{C}} \; d_\phi\big(\phi(x),\, z\big)\] <p>That residual distance is the gap between what you wanted and what you can get, and it is not small. It is also, inevitably, measured in the same $\phi$ whose arbitrariness is the problem in the first place. Add that synthesis cost is wildly uneven across regions — the empty parts of chemical space are sometimes empty precisely because they are hard to make — and the clean picture of filling a void starts to look like a constrained optimisation with an objective nobody has written down carefully.</p> <h2 id="and-then-how-would-you-know-it-worked">And then, how would you know it worked</h2> <p>Suppose you do it anyway: define a space, define a universe, pick compounds, run the assays, retrain. How do you tell whether it helped?</p> <p>The tempting answer is to report the change in global test error, and I think that is the wrong statistic — for the same reason I <a href="/blog/2026/multitask-admet-what-the-average-hides/">argued about multitask models</a> recently. If you added fifty compounds in one sparse region of a thousand-compound set, the global mean is mostly noise from everywhere else. What you want to know is whether the model improved <em>in the region you filled</em>, and whether it did so more than the same budget spent at random or on the points the model was least certain about. Those baselines are not optional. Coverage-driven selection is one of several established strategies, and the literature on uncertainty sampling, query-by-committee and core-set selection is old enough that a new method has to beat them rather than cite them.</p> <h2 id="where-this-leaves-me">Where this leaves me</h2> <p>I am working on this, and I have nothing to report yet — no method I am ready to defend and no numbers. What I have is a reframing that I think is correct and that I have not seen stated plainly:</p> <blockquote> <p>Coverage is not a property of a dataset. It is a property of a dataset, a featurisation, and a reference universe — and most of the time only the first is reported.</p> </blockquote> <p>If that is right, then “we identified gaps in chemical space and designed experiments to fill them” is an incomplete sentence, and two papers making that claim may not be comparable at all. Whether the choice of featurisation changes the <em>outcome</em> of a gap-filling campaign, and not merely its shopping list, is an empirical question. It is the one I would most like to answer, and it is answerable retrospectively, before anyone spends money at the bench.</p> <p>That seems like the right order to do it in.</p> </div> </article> <br> <hr> <br> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/multitask-admet-what-the-average-hides/">Multitask ADMET models, and what the average improvement hides</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/docking-md-hepatitis-e-virus/">Docking and MD for a viral protein pocket, and what they could not settle</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/caliciboost-molecular-representations/">What CaliciBoost taught me about molecular representations</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/claude-science-on-windows/">Running Claude Science on Windows, then and now</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Huong (Christine) Van Le. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-research",
+          title: "research",
+          description: "Machine learning for molecular property prediction, structure-based modelling and biologics design — and when its predictions can be trusted.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/research/";
+          },
+        },{id: "nav-publications",
+          title: "publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "Research themes I work on, and the published work behind them.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Education, research experience and selected publications.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "post-coverage-is-not-a-property-of-a-dataset",
+        
+          title: "Coverage is not a property of a dataset",
+        
+        description: "On what it means for a chemical dataset to have a hole in it, and why the answer depends on who is asking",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/coverage-is-not-a-property-of-a-dataset/";
+          
+        },
+      },{id: "post-multitask-admet-models-and-what-the-average-improvement-hides",
+        
+          title: "Multitask ADMET models, and what the average improvement hides",
+        
+        description: "Why training many ADMET endpoints in one model is not free, and why the mean across tasks is the wrong thing to report",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/multitask-admet-what-the-average-hides/";
+          
+        },
+      },{id: "post-docking-and-md-for-a-viral-protein-pocket-and-what-they-could-not-settle",
+        
+          title: "Docking and MD for a viral protein pocket, and what they could not...",
+        
+        description: "Notes on the in silico part of our PNAS study on fatty acids and hepatitis E virus replication",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/docking-md-hepatitis-e-virus/";
+          
+        },
+      },{id: "post-what-caliciboost-taught-me-about-molecular-representations",
+        
+          title: "What CaliciBoost taught me about molecular representations",
+        
+        description: "Notes on our Journal of Cheminformatics paper comparing eight molecular representations for Caco-2 permeability prediction",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/caliciboost-molecular-representations/";
+          
+        },
+      },{id: "post-running-claude-science-on-windows-then-and-now",
+        
+          title: "Running Claude Science on Windows, then and now",
+        
+        description: "From a WSL workaround during the beta to a native Windows app, and when the Linux route still makes sense",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/claude-science-on-windows/";
+          
+        },
+      },{id: "news-caliciboost-accepted-in-journal-of-cheminformatics-first-place-on-the-tdc-caco-2-permeability-leaderboard-sparkles",
+          title: 'CaliciBoost accepted in _Journal of Cheminformatics_ — first place on the TDC Caco-2...',
+          description: "",
+          section: "News",},{id: "news-our-study-on-fatty-acid-regulation-in-hepatitis-e-virus-replication-is-out-in-pnas-with-the-structural-modelling-contributed-by-our-team",
+          title: 'Our study on fatty acid regulation in hepatitis E virus replication is out...',
+          description: "",
+          section: "News",},{id: "projects-structure-based-modelling-of-biomolecular-complexes",
+          title: 'Structure-based modelling of biomolecular complexes',
+          description: "Working out how two molecules interact in three dimensions — where they bind, through which contacts, and what to change to bind better",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_structure_based_modelling/";
+            },},{id: "projects-admet-prediction-under-limited-and-heterogeneous-data",
+          title: 'ADMET prediction under limited and heterogeneous data',
+          description: "Predicting absorption, distribution, metabolism, excretion, and toxicity (ADMET) from structure when the data is small, noisy, and cannot be shared",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_admet_prediction/";
+            },},{id: "projects-computational-design-of-peptide-and-antibody-therapeutics",
+          title: 'Computational design of peptide and antibody therapeutics',
+          description: "Generating binders against a target, and the harder problem of deciding which generated design is worth making",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_biologics_design/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%68%75%6F%6E%67%76%61%6E%6C%65.%75%73%74@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=NL0VFr0AAAAJ", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/huong-christine-van-le-0104", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/huongvanle", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
