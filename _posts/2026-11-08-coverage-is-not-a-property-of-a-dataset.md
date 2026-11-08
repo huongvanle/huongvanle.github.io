@@ -45,7 +45,21 @@ Here is the effect on a library I enumerated to look at it directly. Same molecu
 
 The two panels are the same compounds. One space says this library is full of holes; the other says it is essentially solid. And the compounds that sit on the rim of a gap in the first space — the ones you would reach for if you were trying to fill it — are scattered across the second, bordering nothing.
 
-I want to be careful not to overstate what a figure like this shows. It is an enumerated library, not a real assay set, and two dimensions of PCA is a crude view of either space. But the direction of the effect is not an artefact of those choices, and it is enough to make the point that interests me: **a gap is a property of a dataset and a featurisation together, and the featurisation is a modelling decision somebody made.** Two groups can analyse the same dataset, both honestly conclude that it has holes, and commission entirely different experiments.
+Running the same analysis through five standard featurisations makes the spread clearer:
+
+| Featurisation               | Holes | Molecules on a hole rim |
+| --------------------------- | ----: | ----------------------: |
+| Morgan fingerprints (r=2)   |    20 |             446 (26.0%) |
+| Morgan fingerprints (r=3)   |    15 |             767 (44.6%) |
+| MACCS keys                  |     6 |               90 (5.2%) |
+| Atom-pair fingerprints      |     2 |              136 (7.9%) |
+| Physicochemical descriptors |     1 |                9 (0.5%) |
+
+The rim is the shortlist: if you were using this analysis to choose compounds for assay, those are the ones you would send. Measured as a Jaccard overlap, the five shortlists agree with each other by **0.38 at best and 0.00 at worst** — and 0.38 is between Morgan at radius 2 and Morgan at radius 3, two settings of the same fingerprint. Across families the overlap is near zero; Morgan r=2 and physicochemical descriptors share 0.4% of theirs.
+
+The code and the full overlap matrix are in [a small repository](https://github.com/huongvanle/chemical-space-coverage), if you want to change the grid resolution and watch the numbers move.
+
+I want to be careful not to overstate what this shows. It is an enumerated library, not a real assay set, and two dimensions of PCA is a crude view of either space. But the direction of the effect is not an artefact of those choices, and it is enough to make the point that interests me: **a gap is a property of a dataset and a featurisation together, and the featurisation is a modelling decision somebody made.** Two groups can analyse the same dataset, both honestly conclude that it has holes, and commission entirely different experiments.
 
 ## You cannot order a point in chemical space
 
@@ -68,6 +82,8 @@ The tempting answer is to report the change in global test error, and I think th
 I am working on this, and I have nothing to report yet — no method I am ready to defend and no numbers. What I have is a reframing that I think is correct and that I have not seen stated plainly:
 
 > Coverage is not a property of a dataset. It is a property of a dataset, a featurisation, and a reference universe — and most of the time only the first is reported.
+
+The selection half of that is now measured: five reasonable featurisations nominate almost disjoint sets of compounds. What is not measured is whether the choice changes the _outcome_ — whether a model trained on one shortlist ends up better than a model trained on another. That needs acquisition simulation, retraining, and evaluation inside the filled region against proper baselines, and it is the part I am working on.
 
 If that is right, then "we identified gaps in chemical space and designed experiments to fill them" is an incomplete sentence, and two papers making that claim may not be comparable at all. Whether the choice of featurisation changes the _outcome_ of a gap-filling campaign, and not merely its shopping list, is an empirical question. It is the one I would most like to answer, and it is answerable retrospectively, before anyone spends money at the bench.
 
