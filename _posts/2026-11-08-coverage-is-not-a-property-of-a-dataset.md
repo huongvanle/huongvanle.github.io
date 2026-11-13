@@ -39,9 +39,35 @@ and a hole is a region where the density of the dataset under $d_\phi$ is low wh
 
 That is not a theoretical worry. In [CaliciBoost]({{ '/blog/2026/caliciboost-molecular-representations/' | relative_url }}) we compared eight molecular representations on one permeability task through a single fixed pipeline, and they did not agree — not on performance, and by implication not on which compounds resemble which. If eight featurisations disagree about similarity, they disagree about holes.
 
-Here is the effect on a library I enumerated to look at it directly. Same molecules, two standard featurisations, each reduced to two dimensions and binned on the same grid; a hatched cell is an empty region fully enclosed by occupied ones.
+Here is the effect on a library I enumerated to look at it directly. Same molecules, two standard featurisations, each reduced to two dimensions and binned on the same grid; a hatched cell is an empty region fully enclosed by occupied ones. Change either space, or the grid resolution, and watch what counts as missing.
 
-{% include figure.liquid loading="eager" path="assets/img/blog/chemical-space-holes.png" class="img-fluid rounded z-depth-1" caption="One set of 1,718 enumerated molecules under two featurisations. Substructure fingerprints report twenty enclosed empty regions; physicochemical descriptors report one. The 123 compounds immediately surrounding a chosen hole on the left occupy seven cells there and twenty-nine on the right, next to no hole at all." %}
+<iframe
+  id="chemspace-frame"
+  src="{{ '/assets/html/chemical-space-coverage.html' | relative_url }}"
+  title="Where a chemical library looks empty — interactive"
+  loading="lazy"
+  style="width: 100%; height: 1180px; border: 1px solid var(--global-divider-color); border-radius: 6px; display: block"
+></iframe>
+
+<script>
+  (function () {
+    var f = document.getElementById("chemspace-frame");
+    if (!f) return;
+    function sendTheme() {
+      var t = document.documentElement.getAttribute("data-theme");
+      try {
+        f.contentWindow.postMessage({ theme: t === "dark" ? "dark" : "light" }, "*");
+      } catch (e) {}
+    }
+    f.addEventListener("load", sendTheme);
+    new MutationObserver(sendTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    addEventListener("message", function (e) {
+      if (e.source === f.contentWindow && e.data && e.data.chemspaceHeight) {
+        f.style.height = e.data.chemspaceHeight + 24 + "px";
+      }
+    });
+  })();
+</script>
 
 The two panels are the same compounds. One space says this library is full of holes; the other says it is essentially solid. And the compounds that sit on the rim of a gap in the first space — the ones you would reach for if you were trying to fill it — are scattered across the second, bordering nothing.
 
