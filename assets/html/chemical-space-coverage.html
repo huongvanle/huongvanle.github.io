@@ -3399,8 +3399,18 @@
       });
       matchMedia("(prefers-color-scheme: dark)").addEventListener("change", render);
 
+      /* Report the height of the CONTENT, never the document: documentElement
+         .scrollHeight is floored at the viewport, so in an auto-sized iframe it
+         grows every time the parent acts on it. Only speak up when it changes. */
+      let lastH = 0;
       function post() {
-        if (parent !== window) parent.postMessage({ chemspaceHeight: document.documentElement.scrollHeight }, "*");
+        if (parent === window) return;
+        const w = document.querySelector(".wrap");
+        if (!w) return;
+        const h = Math.ceil(w.getBoundingClientRect().height) + 40; // body padding 18 + 22
+        if (Math.abs(h - lastH) < 2) return;
+        lastH = h;
+        parent.postMessage({ chemspaceHeight: h }, "*");
       }
 
       document.getElementById("foot").innerHTML =
@@ -3411,7 +3421,12 @@
       selA.addEventListener("change", render);
       selB.addEventListener("change", render);
       bins.addEventListener("input", render);
+      /* Width is what the drawing depends on; a height-only resize (which is
+         what the parent's auto-sizing causes) must not trigger a redraw. */
+      let lastW = innerWidth;
       addEventListener("resize", () => {
+        if (innerWidth === lastW) return;
+        lastW = innerWidth;
         clearTimeout(window._rz);
         window._rz = setTimeout(render, 120);
       });

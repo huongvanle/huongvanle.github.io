@@ -63,7 +63,8 @@ Here is the effect on a library I enumerated to look at it directly. Same molecu
     new MutationObserver(sendTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
     addEventListener("message", function (e) {
       if (e.source === f.contentWindow && e.data && e.data.chemspaceHeight) {
-        f.style.height = e.data.chemspaceHeight + 24 + "px";
+        var h = e.data.chemspaceHeight;
+        if (Math.abs(h - parseFloat(f.style.height || 0)) > 2) f.style.height = h + "px";
       }
     });
   })();
