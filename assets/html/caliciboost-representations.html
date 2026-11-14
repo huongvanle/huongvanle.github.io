@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Eight representations, two datasets</title>
+    <style>
+      :root {
+        --ink: #14212f;
+        --ink2: #53646f;
+        --ink3: #8795a1;
+        --bg: #ffffff;
+        --surf: #f7f9fb;
+        --line: #dde4ea;
+        --line2: #c3ced8;
+        --navy: #13335c;
+        --blue: #3d6ea8;
+        --blue-l: #7aa6d8;
+        --wash: #e9f0f8;
+        --warm: #d4762a;
+        --warm-wash: #fbeee3;
+        --slate: #8795a1;
+        --on-navy: #ffffff;
+        --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+        --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color-scheme: light;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --ink: #e6ecf1;
+          --ink2: #a3b0bb;
+          --ink3: #76838e;
+          --bg: #11171d;
+          --surf: #19212a;
+          --line: #2b3640;
+          --line2: #3b4854;
+          --navy: #8fb5e0;
+          --blue: #5a92cd;
+          --blue-l: #8fb9e4;
+          --wash: #16293d;
+          --warm: #e08a58;
+          --warm-wash: #2f1e14;
+          --slate: #6e7b87;
+          --on-navy: #0d1319;
+          color-scheme: dark;
+        }
+      }
+      :root[data-theme="dark"] {
+        --ink: #e6ecf1;
+        --ink2: #a3b0bb;
+        --ink3: #76838e;
+        --bg: #11171d;
+        --surf: #19212a;
+        --line: #2b3640;
+        --line2: #3b4854;
+        --navy: #8fb5e0;
+        --blue: #5a92cd;
+        --blue-l: #8fb9e4;
+        --wash: #16293d;
+        --warm: #e08a58;
+        --warm-wash: #2f1e14;
+        --slate: #6e7b87;
+        --on-navy: #0d1319;
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 18px 16px 22px;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 15px;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink3);
+      }
+      .lede {
+        margin: 0;
+        color: var(--ink2);
+        font-size: 14px;
+        max-width: 70ch;
+      }
+      .rail {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+      .chip {
+        font-family: var(--sans);
+        font-size: 12.5px;
+        padding: 6px 11px;
+        cursor: pointer;
+        background: var(--bg);
+        color: var(--ink2);
+        border: 1px solid var(--line2);
+        border-radius: 999px;
+        transition: 0.14s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .chip .sw {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex: none;
+      }
+      .chip:hover {
+        border-color: var(--blue);
+        color: var(--ink);
+      }
+      .chip[aria-pressed="true"] {
+        background: var(--navy);
+        border-color: var(--navy);
+        color: var(--on-navy);
+      }
+      .chip:focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: 2px;
+      }
+      .panels {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 14px;
+      }
+      @media (max-width: 720px) {
+        .panels {
+          grid-template-columns: 1fr;
+        }
+      }
+      .pane {
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        background: var(--bg);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        min-width: 0;
+      }
+      .pane .cap {
+        padding: 10px 13px;
+        border-bottom: 1px solid var(--line);
+        background: var(--surf);
+      }
+      .pane .cap b {
+        font-size: 13.5px;
+        font-weight: 600;
+        display: block;
+      }
+      .pane .cap span {
+        font-size: 11.5px;
+        color: var(--ink3);
+      }
+      svg {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .readout {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(126px, 1fr));
+        gap: 16px;
+        padding: 15px 16px;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        background: var(--surf);
+      }
+      .cell {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+      }
+      .cell .k {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--ink3);
+      }
+      .cell .v {
+        font-family: var(--mono);
+        font-size: 24px;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+      }
+      .cell .s {
+        font-size: 11.5px;
+        color: var(--ink2);
+      }
+      .v.good {
+        color: var(--blue);
+      }
+      .v.bad {
+        color: var(--warm);
+      }
+      .v.off {
+        color: var(--ink3);
+        font-size: 15px;
+        padding-top: 7px;
+      }
+      .verdict {
+        font-size: 13.5px;
+        color: var(--ink2);
+        padding: 11px 14px;
+        background: var(--wash);
+        border-left: 2px solid var(--blue);
+        border-radius: 0 3px 3px 0;
+      }
+      .verdict b {
+        color: var(--ink);
+      }
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px 18px;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink3);
+      }
+      .legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .legend i {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        flex: none;
+      }
+      footer {
+        font-size: 12px;
+        color: var(--ink3);
+        line-height: 1.5;
+        max-width: 74ch;
+      }
+      footer a {
+        color: var(--blue);
+      }
+      .nm {
+        font-family: var(--sans);
+        font-size: 11.5px;
+        fill: var(--ink2);
+      }
+      .nm.on {
+        fill: var(--ink);
+        font-weight: 600;
+      }
+      .vl {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        fill: var(--ink3);
+      }
+      .vl.on {
+        fill: var(--ink2);
+      }
+      .ax {
+        font-family: var(--mono);
+        font-size: 10px;
+        fill: var(--ink3);
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+      }
+      .hit {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Interactive · CaliciBoost, J. Cheminformatics 17:184 (2025)</span>
+        <p class="lede">
+          Eight ways of describing a molecule, one fixed pipeline, two Caco-2 datasets. Click any representation to follow it. The left panel is the
+          finding that surprised me most: the ranking does not survive a change of dataset.
+        </p>
+      </div>
+
+      <div class="rail" id="rail"></div>
+
+      <div class="panels">
+        <div class="pane">
+          <div class="cap"><b>The ranking flips</b><span>Test MAE after feature selection · higher on the chart is better</span></div>
+          <svg id="slope" viewBox="0 0 560 430" role="img" aria-label="Slope chart of MAE on TDC versus OCHEM"></svg>
+        </div>
+        <div class="pane">
+          <div class="cap"><b>What feature selection bought</b><span>TDC only · all features → selected features</span></div>
+          <svg id="dumb" viewBox="0 0 460 430" role="img" aria-label="Change in MAE from feature selection"></svg>
+        </div>
+      </div>
+
+      <p class="legend">
+        <span><i style="background: var(--navy)"></i>descriptor set</span>
+        <span><i style="background: var(--slate)"></i>fingerprint</span>
+        <span><i style="background: var(--warm)"></i>learned embedding</span>
+      </p>
+
+      <div class="readout" id="readout"></div>
+
+      <p class="verdict" id="verdict"></p>
+
+      <footer id="foot"></footer>
+    </div>
+
+    <script>
+      /* Every number below is from the published paper. Where the article does
+         not report a value, it is null and the page says so rather than
+         guessing: all-features MAE is given in the text for five of the eight
+         representations on TDC, and for none on OCHEM. */
+      const REPS = [
+        { k: "padel", n: "PaDEL", kind: "d", dim: "1,875 descriptors", tdc: 0.2525, och: 0.3818, tdcAll: 0.3058 },
+        { k: "mordred", n: "Mordred", kind: "d", dim: "over 1,800 descriptors", tdc: 0.2613, och: 0.4035, tdcAll: 0.3033 },
+        { k: "rdkit", n: "RDKit", kind: "d", dim: "over 200 descriptors", tdc: 0.2637, och: 0.3529, tdcAll: 0.2898 },
+        { k: "avalon", n: "Avalon", kind: "f", dim: "1,024 bits", tdc: 0.2748, och: 0.3726, tdcAll: 0.3009 },
+        { k: "maccs", n: "MACCS", kind: "f", dim: "167 bits", tdc: 0.2871, och: 0.3792, tdcAll: null },
+        { k: "erg", n: "ErG", kind: "f", dim: "315 dimensions", tdc: 0.3011, och: 0.3735, tdcAll: null },
+        { k: "morgan", n: "Morgan", kind: "f", dim: "1,024 bits", tdc: 0.3011, och: 0.3865, tdcAll: 0.2995 },
+        { k: "cddd", n: "CDDD", kind: "l", dim: "512-dim embedding", tdc: 0.3595, och: 0.403, tdcAll: null },
+      ];
+      const COLOR = { d: "--navy", f: "--slate", l: "--warm" };
+      const SVGNS = "http://www.w3.org/2000/svg";
+      let focus = null;
+
+      function css(v) {
+        return getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+      }
+      function col(r) {
+        return css(COLOR[r.kind]);
+      }
+      function el(p, t, a) {
+        const e = document.createElementNS(SVGNS, t);
+        for (const k in a) e.setAttribute(k, a[k]);
+        p.appendChild(e);
+        return e;
+      }
+      function rank(key, field) {
+        return [...REPS].sort((a, b) => a[field] - b[field]).findIndex((r) => r.k === key) + 1;
+      }
+      /* push labels apart so none overlap, keeping their order */
+      function declutter(ys, gap, lo, hi) {
+        const idx = ys.map((y, i) => i).sort((a, b) => ys[a] - ys[b]);
+        const out = ys.slice();
+        let prev = -1e9;
+        for (const i of idx) {
+          out[i] = Math.max(out[i], prev + gap);
+          prev = out[i];
+        }
+        const over = out[idx[idx.length - 1]] - hi;
+        if (over > 0) {
+          let p = 1e9;
+          for (let t = idx.length - 1; t >= 0; t--) {
+            const i = idx[t];
+            out[i] = Math.min(out[i] - over, p - gap);
+            p = out[i];
+          }
+        }
+        return out.map((v) => Math.max(lo, v));
+      }
+
+      /* ---------------- slope chart ---------------- */
+      function drawSlope() {
+        const s = document.getElementById("slope");
+        s.textContent = "";
+        const W = 560,
+          H = 430,
+          T = 44,
+          B = 34,
+          xL = 150,
+          xR = 370;
+        const all = REPS.flatMap((r) => [r.tdc, r.och]);
+        const lo = Math.min(...all) - 0.008,
+          hi = Math.max(...all) + 0.008;
+        const y = (v) => T + ((v - lo) / (hi - lo)) * (H - T - B);
+
+        el(s, "text", { x: xL, y: 20, "text-anchor": "middle", class: "ax" }).textContent = "TDC · 906";
+        el(s, "text", { x: xR, y: 20, "text-anchor": "middle", class: "ax" }).textContent = "OCHEM · 5,481";
+        for (const x of [xL, xR]) el(s, "line", { x1: x, y1: T - 12, x2: x, y2: H - B + 8, stroke: css("--line"), "stroke-width": 1 });
+
+        /* labels are one line each, so a 17px slot is enough to keep them apart */
+        const yL = declutter(
+          REPS.map((r) => y(r.tdc)),
+          17,
+          T,
+          H - B
+        );
+        const yR = declutter(
+          REPS.map((r) => y(r.och)),
+          17,
+          T,
+          H - B
+        );
+
+        REPS.forEach((r, i) => {
+          const on = !focus || focus === r.k;
+          const c = col(r),
+            op = focus && focus !== r.k ? 0.16 : 1;
+          const g = el(s, "g", { opacity: op, class: "hit" });
+          g.addEventListener("click", () => setFocus(focus === r.k ? null : r.k));
+          el(g, "path", {
+            d: `M${xL + 4},${y(r.tdc)} C${xL + 80},${y(r.tdc)} ${xR - 80},${y(r.och)} ${xR - 4},${y(r.och)}`,
+            fill: "none",
+            stroke: c,
+            "stroke-width": focus === r.k ? 3 : 1.7,
+          });
+          el(g, "circle", { cx: xL + 4, cy: y(r.tdc), r: focus === r.k ? 5 : 3.6, fill: c });
+          el(g, "circle", { cx: xR - 4, cy: y(r.och), r: focus === r.k ? 5 : 3.6, fill: c });
+          const rt = rank(r.k, "tdc"),
+            ro = rank(r.k, "och");
+          /* name and value share one line, so nothing can collide with the row below */
+          const label = (x, yy, anchor, txt, val) => {
+            const t = el(s, "text", { x, y: yy + 4, "text-anchor": anchor, class: "nm" + (on && focus ? " on" : ""), opacity: op });
+            t.appendChild(document.createTextNode(txt + "  "));
+            const v = document.createElementNS(SVGNS, "tspan");
+            v.setAttribute("class", "vl");
+            v.textContent = val.toFixed(4);
+            t.appendChild(v);
+          };
+          label(xL - 12, yL[i], "end", `${rt}. ${r.n}`, r.tdc);
+          label(xR + 12, yR[i], "start", `${ro}. ${r.n}`, r.och);
+        });
+        el(s, "text", { x: 8, y: H - 6, class: "ax" }).textContent = "test mae — lower is better";
+      }
+
+      /* ---------------- dumbbell ---------------- */
+      function drawDumb() {
+        const s = document.getElementById("dumb");
+        s.textContent = "";
+        const W = 460,
+          H = 430,
+          T = 42,
+          L = 104,
+          R = 74; /* reserved column on the right for the delta labels */
+        const have = REPS.filter((r) => r.tdcAll != null);
+        const vals = have.flatMap((r) => [r.tdc, r.tdcAll]);
+        const lo = Math.min(...vals) - 0.006,
+          hi = Math.max(...vals) + 0.006;
+        const x = (v) => L + ((v - lo) / (hi - lo)) * (W - L - R);
+        const rows = REPS.length;
+        const step = (H - T - 30) / rows;
+
+        for (let t = 0; t <= 4; t++) {
+          const v = lo + ((hi - lo) * t) / 4;
+          el(s, "line", { x1: x(v), y1: T - 14, x2: x(v), y2: H - 34, stroke: css("--line"), "stroke-width": 1 });
+          el(s, "text", { x: x(v), y: H - 20, "text-anchor": "middle", class: "vl" }).textContent = v.toFixed(3);
+        }
+        el(s, "text", { x: L, y: 18, class: "ax" }).textContent = "all features  →  selected";
+
+        REPS.forEach((r, i) => {
+          const yy = T + step * i + step / 2;
+          const op = focus && focus !== r.k ? 0.16 : 1;
+          const g = el(s, "g", { opacity: op, class: "hit" });
+          g.addEventListener("click", () => setFocus(focus === r.k ? null : r.k));
+          const lab = el(g, "text", { x: L - 12, y: yy + 4, "text-anchor": "end", class: "nm" + (focus === r.k ? " on" : "") });
+          lab.textContent = r.n;
+          if (r.tdcAll == null) {
+            el(g, "text", { x: L + 6, y: yy + 4, class: "vl" }).textContent = "not reported in the paper";
+            return;
+          }
+          const worse = r.tdc > r.tdcAll;
+          const c = worse ? css("--warm") : col(r);
+          el(g, "line", {
+            x1: x(r.tdcAll),
+            y1: yy,
+            x2: x(r.tdc),
+            y2: yy,
+            stroke: c,
+            "stroke-width": focus === r.k ? 4 : 2.6,
+            "stroke-linecap": "round",
+            opacity: 0.5,
+          });
+          el(g, "circle", { cx: x(r.tdcAll), cy: yy, r: 3.4, fill: css("--bg"), stroke: c, "stroke-width": 1.8 });
+          el(g, "circle", { cx: x(r.tdc), cy: yy, r: focus === r.k ? 5.4 : 4.4, fill: c });
+          /* arrowhead at the selected-features end, so the direction of travel is explicit */
+          const dir = r.tdc < r.tdcAll ? -1 : 1;
+          if (Math.abs(x(r.tdc) - x(r.tdcAll)) > 14) {
+            const tip = x(r.tdc) - dir * 7.5;
+            el(g, "path", {
+              d: `M${tip + dir * 7},${yy} L${tip},${yy - 3.6} L${tip},${yy + 3.6} Z`,
+              fill: c,
+            });
+          }
+          const d = r.tdcAll - r.tdc;
+          /* deltas live in their own right-hand column — never over a row label */
+          const dt = el(g, "text", {
+            x: W - 6,
+            y: yy + 4,
+            "text-anchor": "end",
+            class: "vl",
+            fill: worse ? css("--warm") : css("--ink2"),
+          });
+          dt.textContent = (d > 0 ? "−" : "+") + Math.abs(d).toFixed(4);
+        });
+      }
+
+      /* ---------------- chips, readout ---------------- */
+      function buildRail() {
+        const rail = document.getElementById("rail");
+        rail.textContent = "";
+        const mk = (label, key, c) => {
+          const b = document.createElement("button");
+          b.className = "chip";
+          b.type = "button";
+          b.setAttribute("aria-pressed", focus === key ? "true" : "false");
+          if (c) {
+            const i = document.createElement("i");
+            i.className = "sw";
+            i.style.background = c;
+            b.appendChild(i);
+          }
+          b.appendChild(document.createTextNode(label));
+          b.addEventListener("click", () => setFocus(focus === key ? null : key));
+          rail.appendChild(b);
+        };
+        mk("All eight", null, null);
+        for (const r of REPS) mk(r.n, r.k, col(r));
+      }
+
+      function fmtRankMove(a, b) {
+        const d = b - a;
+        if (d === 0) return "held its place";
+        return d > 0 ? `fell ${d} place${d > 1 ? "s" : ""}` : `rose ${-d} place${-d > 1 ? "s" : ""}`;
+      }
+
+      function drawReadout() {
+        const ro = document.getElementById("readout"),
+          V = document.getElementById("verdict");
+        ro.textContent = "";
+        const cell = (k, v, s, cls) => {
+          const d = document.createElement("div");
+          d.className = "cell";
+          d.innerHTML = '<span class="k"></span><span class="v ' + (cls || "") + '"></span><span class="s"></span>';
+          d.children[0].textContent = k;
+          d.children[1].textContent = v;
+          d.children[2].textContent = s || "";
+          ro.appendChild(d);
+        };
+        if (!focus) {
+          cell("Best on TDC", "0.2525", "PaDEL, selected features", "good");
+          cell("Best on OCHEM", "0.3529", "RDKit descriptors", "good");
+          cell("TDC leaderboard", "0.2560", "± 0.006 over five seeds · rank 1", "good");
+          cell("Biggest fall", "Mordred", "2nd on TDC → 8th on OCHEM", "bad");
+          V.innerHTML =
+            "Not one of the eight holds its position. <b>PaDEL</b> wins on the 906-compound benchmark and is fifth on the " +
+            "5,481-compound set; <b>Mordred</b> goes from second to last; <b>RDKit descriptors</b> are the only ones near the top of both. " +
+            "Pick a representation to follow it.";
+          return;
+        }
+        const r = REPS.find((x) => x.k === focus);
+        const rt = rank(r.k, "tdc"),
+          rp = rank(r.k, "och");
+        cell("TDC", r.tdc.toFixed(4), "rank " + rt + " of 8", rt <= 3 ? "good" : "");
+        cell("OCHEM", r.och.toFixed(4), "rank " + rp + " of 8", rp <= 3 ? "good" : "");
+        cell(
+          "Across datasets",
+          (rp > rt ? "▼ " : rp < rt ? "▲ " : "— ") + Math.abs(rp - rt),
+          fmtRankMove(rt, rp),
+          rp > rt ? "bad" : rp < rt ? "good" : ""
+        );
+        if (r.tdcAll == null) {
+          cell("Feature selection", "not reported", "the paper gives no all-feature MAE for " + r.n, "off");
+        } else {
+          const d = r.tdcAll - r.tdc;
+          cell(
+            "Feature selection",
+            (d > 0 ? "−" : "+") + Math.abs(d).toFixed(4),
+            d > 0 ? "MAE from " + r.tdcAll.toFixed(4) : "selection made it worse",
+            d > 0 ? "good" : "bad"
+          );
+        }
+        let v = "<b>" + r.n + "</b> — " + r.dim + ". ";
+        v += "On TDC it ranks " + rt + " of 8 and on OCHEM " + rp + ", so it " + fmtRankMove(rt, rp) + " when the dataset changed. ";
+        if (r.tdcAll == null) {
+          v += "The paper reports its selected-feature result but not its all-feature one, so the gain from selection cannot be read off here.";
+        } else if (r.tdcAll > r.tdc) {
+          v += "Cutting to the top-ranked features took its TDC error from " + r.tdcAll.toFixed(4) + " to " + r.tdc.toFixed(4) + ".";
+        } else {
+          v +=
+            "Feature selection did not help it: the error moved from " +
+            r.tdcAll.toFixed(4) +
+            " on all features to " +
+            r.tdc.toFixed(4) +
+            " on the selected ones, slightly the wrong way.";
+        }
+        V.innerHTML = v;
+      }
+
+      function setFocus(k) {
+        focus = k;
+        render();
+      }
+      function render() {
+        buildRail();
+        drawSlope();
+        drawDumb();
+        drawReadout();
+        post();
+      }
+
+      /* ---- parent frame: theme in, content height out ---- */
+      addEventListener("message", (e) => {
+        const t = e.data && e.data.theme;
+        if (t === "dark" || t === "light") {
+          document.documentElement.setAttribute("data-theme", t);
+          render();
+        }
+      });
+      matchMedia("(prefers-color-scheme: dark)").addEventListener("change", render);
+
+      let lastH = 0;
+      function post() {
+        if (parent === window) return;
+        const w = document.querySelector(".wrap");
+        if (!w) return;
+        const h = Math.ceil(w.getBoundingClientRect().height) + 40;
+        if (Math.abs(h - lastH) < 2) return;
+        lastH = h;
+        parent.postMessage({ caliciHeight: h }, "*");
+      }
+      let lastW = innerWidth;
+      addEventListener("resize", () => {
+        if (innerWidth === lastW) return;
+        lastW = innerWidth;
+        clearTimeout(window._rz);
+        window._rz = setTimeout(render, 120);
+      });
+
+      document.getElementById("foot").innerHTML =
+        "Values are those reported in Le et al., <em>Journal of Cheminformatics</em> <b>17</b>, 184 (2025), " +
+        '<a href="https://doi.org/10.1186/s13321-025-01137-7" target="_blank" rel="noopener">open access</a>. ' +
+        "Selected-feature MAE is given for all eight representations on both datasets; all-feature MAE is reported in the text " +
+        "for five of the eight on TDC and for none on OCHEM, and those cells say so rather than carrying an estimate. " +
+        'Code: <a href="https://github.com/Calici/CaliciBoost" target="_blank" rel="noopener">Calici/CaliciBoost</a>.';
+
+      render();
+    </script>
+  </body>
+</html>
