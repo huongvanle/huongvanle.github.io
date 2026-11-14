@@ -27,13 +27,42 @@ We used two datasets that differ in scale and chemical diversity. The TDC Caco-2
 
 ## What we found
 
-{% include figure.liquid loading="lazy" path="assets/img/blog/caliciboost-mae.png" class="img-fluid rounded z-depth-1" caption="Test MAE of the top-feature model for each representation on the two datasets. Values from Figs. 6 and 7 of the paper." %}
+<iframe
+  id="calici-frame"
+  src="{{ '/assets/html/caliciboost-representations.html' | relative_url }}"
+  title="Eight representations across two Caco-2 datasets — interactive"
+  loading="lazy"
+  style="width: 100%; height: 1060px; border: 1px solid var(--global-divider-color); border-radius: 6px; display: block"
+></iframe>
+
+<script>
+  (function () {
+    var f = document.getElementById("calici-frame");
+    if (!f) return;
+    function sendTheme() {
+      var t = document.documentElement.getAttribute("data-theme");
+      try {
+        f.contentWindow.postMessage({ theme: t === "dark" ? "dark" : "light" }, "*");
+      } catch (e) {}
+    }
+    f.addEventListener("load", sendTheme);
+    new MutationObserver(sendTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    addEventListener("message", function (e) {
+      if (e.source === f.contentWindow && e.data && e.data.caliciHeight) {
+        var h = e.data.caliciHeight;
+        if (Math.abs(h - parseFloat(f.style.height || 0)) > 2) f.style.height = h + "px";
+      }
+    });
+  })();
+</script>
 
 Three things stood out to me.
 
 **Descriptor sets did best on the benchmark.** On TDC, PaDEL, Mordred and RDKit descriptors gave the lowest errors. The best model, an XGBoost regressor trained on selected PaDEL descriptors, reached a mean absolute error (MAE) of 0.2525 on the test set. Evaluated under the official TDC protocol over five seeds, it scored 0.2560 ± 0.006 and ranked first on the TDC Caco-2 leaderboard. The learned CDDD embedding had the highest error on TDC. Among the most influential PaDEL features were physicochemical and autocorrelation descriptors, such as the number of acidic groups (nAcid) and charge- and mass-weighted autocorrelations.
 
 **Feature selection mattered most for the largest descriptor sets.** PaDEL provides 1,875 descriptors and Mordred more than 1,800. Trained on all of them, PaDEL (MAE 0.3058) and Mordred (0.3033) trailed RDKit descriptors, Morgan and Avalon. After feature selection and tuning, they moved to the top: the final PaDEL model used its 73 most important features. A smaller, well-chosen subset kept or improved accuracy while making the model easier to interpret.
+
+The size of that gain tracks how much there was to cut. PaDEL gained the most (0.3058 to 0.2525) and Mordred next (0.3033 to 0.2613), while RDKit descriptors and Avalon gained about half as much. Morgan gained nothing at all — its error moved the wrong way, from 0.2995 on all features to 0.3011 on the selected ones. Selection is not free, and on a compact fingerprint there is little to win and a little to lose.
 
 **The dataset changes the ranking.** On the larger and more diverse OCHEM set, errors were higher for every representation, and the order shifted: RDKit descriptors did best (MAE 0.3529), while PaDEL fell to fifth. A representation that wins on one benchmark is not guaranteed to win on another, which is a good reason to test on more than one dataset before drawing conclusions.
 
